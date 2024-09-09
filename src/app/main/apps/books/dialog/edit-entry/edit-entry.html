@@ -1,0 +1,48 @@
+<h5 mat-dialog-title *ngIf="edit === false">NEW BOOK</h5>
+<h5 mat-dialog-title *ngIf="edit === true">EDIT BOOK</h5>
+<mat-dialog-content class="mat-typography">
+  <form name="form" [formGroup]="form" class="w-100-p" fxLayout="column" fxFlex autocomplete="off">
+    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+      <mat-label>Title</mat-label>
+      <input matInput name="title" formControlName="title" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+      <mat-label>Author</mat-label>
+      <input matInput name="author" formControlName="author" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+      <mat-label>ISBN</mat-label>
+      <input matInput name="isbn" formControlName="isbn" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always" fxFlex="50" fxFlex.xs="50">
+      <mat-label>Published Date</mat-label>
+      <input matInput [ngxMatDatetimePicker]="picker" placeholder="Published Date:" name="published_date"
+        formControlName="published_date" [min]="minDate" [max]="maxDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour"
+        [stepMinute]="stepMinute" [stepSecond]="stepSecond" enableMeridian="true">
+      </ngx-mat-datetime-picker>
+
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+      <mat-label>Genre</mat-label>
+      <input matInput name="genre" formControlName="genre" required>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pb-24">
+  <!-- CANCEL Button -->
+  <button mat-icon-button color="warn" [mat-dialog-close]="undefined" matTooltip="Cancel">
+    <mat-icon>cancel</mat-icon>
+  </button>
+
+  <!-- ADD Button -->
+  <button *ngIf="edit === false" mat-icon-button color="accent" (click)="onAdd()" matTooltip="Add">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <!-- SAVE Button -->
+  <button *ngIf="edit === true" mat-icon-button color="accent" (click)="onSave()" matTooltip="Save">
+    <mat-icon>save</mat-icon>
+  </button>
+</mat-dialog-actions>

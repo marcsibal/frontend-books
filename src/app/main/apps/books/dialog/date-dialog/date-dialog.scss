@@ -1,0 +1,84 @@
+.tab-content {
+  padding-top: 20px !important;
+}
+
+table {
+  font-size: 12px;
+}
+
+.label-fg {
+  color: rgb(50, 190, 255) !important; 
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 24px 24px 24px 24px 24px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.content {
+  max-height: calc(100vh - 300px) !important;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: 50% 20% 30%;
+  grid-template-rows: 24px 24px;
+  font-size: 12px;
+}
+
+.item-barcode {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.item-quantity {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.item-amount {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.item-description {
+  grid-column: 1;
+  grid-row: 2 / span 3;
+}
+
+.payments {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 24px;
+  font-size: 12px;
+}
+
+.payments-name {
+  grid-column: 1;
+}
+
+.payments-amount {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.total {
+  display: grid;
+  grid-template-columns: 50% 20% 30%;
+  grid-template-rows: 24;
+  font-size: 12px;
+  align-items: center;
+}
+
+.total-quantity {
+  justify-self: end;
+}
+
+.total-amount {
+  justify-self: end;
+}

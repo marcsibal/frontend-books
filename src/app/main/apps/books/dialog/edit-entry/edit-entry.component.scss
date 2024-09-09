@@ -1,0 +1,29 @@
+.tab-content {
+  padding-top: 20px !important;
+}
+.mat-card {
+  min-height: 140px !important;
+  margin: 24px !important;
+}
+table {
+  font-size: 12px;
+}
+
+.label-fg {
+  color: rgb(50, 190, 255) !important; 
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 24px 24px 24px 24px 24px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.content {
+  max-height: calc(100vh - 300px) !important;
+}
+.mat-dialog-actions{
+  padding-right: 35px !important;
+}

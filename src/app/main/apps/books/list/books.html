@@ -1,0 +1,95 @@
+<div class="page-layout p-24 carded">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="30">
+      <mat-icon class="s-20 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">library_books </mat-icon>
+      <h4>MANAGE ITEM</h4>
+    </div>
+    <form name="form" [formGroup]="form" autocomplete="off" fxLayout="row" fxLayoutAlign="space-between center"
+      fxFlex="40">
+      <mat-form-field appearance="outline" floatLabel="always" class="full-width">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+        <!-- <input #filter matInput name="filter" formControlName="filter"> -->
+        <mat-icon matSuffix color="secondary">search</mat-icon>
+      </mat-form-field>
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex="30">
+      <button mat-icon-button (click)="onDate()" matTooltip="Select Date">
+        <mat-icon class="s-20">date_range</mat-icon>
+      </button>
+      <button mat-icon-button  (click)="onAdd()" matTooltip="Add Book">
+        <mat-icon class="s-20">library_add</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onReload()" matTooltip="Refresh"
+        [disabled]="dataSource.filteredData.length === 0">
+        <mat-icon class="s-20">refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-card class="mat-elevation-z6">
+    <mat-card-content class="item-list mb-0">
+      <table class="table" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
+        [hidden]="dataSource.filteredData.length === 0">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox [disabled]="row.statusN !== 'Approved'"
+              (click)="selectCheckBox(row); $event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="col1">
+          <th style="width: 10%" mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> {{ row.title }} </td>
+        </ng-container>
+        <ng-container matColumnDef="col2">
+          <th style="width: 10%" mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> {{ row.author }} </td>
+        </ng-container>
+        <ng-container matColumnDef="col3">
+          <th style="width: 10%" mat-header-cell *matHeaderCellDef mat-sort-header> ISBN </th>
+          <td mat-cell *matCellDef="let row" class="text-center">{{ row.isbn }}</td>
+        </ng-container>
+        <ng-container matColumnDef="col4">
+          <th style="width: 10%" mat-header-cell *matHeaderCellDef mat-sort-header> Published Date </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> {{ row.published_date *1000 | date:'MM/dd/yyy h:mm
+            a'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="col5">
+          <th style="width: 10%" mat-header-cell *matHeaderCellDef mat-sort-header> Genre </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> {{ row.genre }} </td>
+        </ng-container>
+        <ng-container matColumnDef="col6">
+          <th style="width: 5%" mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row" class="text-right">
+            <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+              (click)="$event.stopPropagation();">
+              <mat-icon class="secondary-text">more_vert</mat-icon>
+            </button>
+            <mat-menu #moreMenu="matMenu">
+              <button mat-menu-item (click)="onEdit(row)" matTooltip="Edit" aria-label="Edit" class="edit-button">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-menu-item (click)="onDelete(row)" matTooltip="Delete" aria-label="Delete" class="delete-button">
+                <mat-icon>delete</mat-icon>
+              </button>
+              
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+    <mat-card-footer>
+      <div [hidden]="dataSource.filteredData.length < 20">
+        <mat-paginator class="pl-8 pr-8" #paginator [length]="dataSource.filteredData.length" [pageIndex]="0"
+          [pageSizeOptions]="[20, 50, 100, 200, 400]">
+        </mat-paginator>
+      </div>
+    </mat-card-footer>

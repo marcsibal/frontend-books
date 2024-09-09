@@ -1,0 +1,15 @@
+<h5 mat-dialog-title>{{ title }}</h5>
+<mat-dialog-content class="mat-typography">
+  <p class="text-center">{{ message }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pb-24">
+
+  <button mat-icon-button [mat-dialog-close]="true" matTooltip="Confirm" color="primary">
+    <mat-icon>check</mat-icon>
+  </button>
+
+  <button mat-icon-button [mat-dialog-close]="false" matTooltip="Cancel" color="warn" cdkFocusInitial>
+    <mat-icon>close</mat-icon>
+  </button>
+
+</mat-dialog-actions>

@@ -1,0 +1,39 @@
+<h5 mat-dialog-title>SELECT DATE</h5>
+<mat-dialog-content class="mat-typography">
+  <form name="form" [formGroup]="form" class="w-100-p" fxLayout="column" fxFlex autocomplete="off">
+    <mat-form-field appearance="outline" floatLabel="always" fxFlex="50" fxFlex.xs="50">
+
+      <mat-label>Date From:</mat-label>
+      <input matInput [matDatepicker]="dateFrom" name="from" formControlName="from">
+      <mat-datepicker-toggle matSuffix [for]="dateFrom">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #dateFrom></mat-datepicker>
+      <!-- <input matInput [ngxMatDatetimePicker]="picker" placeholder="From:" name="from"
+        formControlName="from" [min]="minDate" [max]="maxDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour"
+        [stepMinute]="stepMinute" [stepSecond]="stepSecond" enableMeridian="true">
+      </ngx-mat-datetime-picker> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always" fxFlex="50" fxFlex.xs="50">
+      <mat-label>Date To:</mat-label>
+      <input matInput [matDatepicker]="dateTo" name="to" formControlName="to">
+      <mat-datepicker-toggle matSuffix [for]="dateTo">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #dateTo></mat-datepicker>
+     <!--  <input matInput [ngxMatDatetimePicker]="picker1" placeholder="To:" name="to"
+        formControlName="to" [min]="minDate" [max]="maxDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker1 [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+        [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" enableMeridian="true">
+      </ngx-mat-datetime-picker> -->
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pb-24">
+  <button mat-button color="accent" color="accent" cdkFocusInitial [disabled]="!form.valid" mat-stroked-button (click)="onSave()">OK</button>
+</mat-dialog-actions>

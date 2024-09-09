@@ -1,0 +1,41 @@
+.mat-card {
+  min-height: 140px !important;
+}
+
+.mat-card-title {
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+}
+
+.full-width {
+  width: 100% !important;
+}
+.green-icon {
+  color: green;
+  font-size: 20px;
+}
+.red-icon {
+  color: red;
+  font-size: 20px;
+}
+.orange-icon {
+  color: orangered;
+  font-size: 20px;
+}
+.item-list {
+  height: calc(100vh - 270px) !important;
+  overflow-y: hidden !important;
+}
+
+.item-list:hover {
+  overflow-y: overlay !important;
+}
+.edit-button mat-icon {
+  color: #1976d2 !important; 
+}
+
+.delete-button mat-icon {
+  color: #d32f2f !important;
+}
+
+
